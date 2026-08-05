@@ -79,7 +79,27 @@ h1 {
     height: 100%;
     background: var(--accent);
     border-radius: 8px;
-    transition: width 1s ease;
+    transition: width 0.5s ease;
+}
+
+.header-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.header-stats span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-color);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
 }
 
 /* ========================================
@@ -168,7 +188,6 @@ pre {
     position: relative;
 }
 
-/* Botón copiar para código */
 pre::after {
     content: "📋";
     position: absolute;
@@ -184,10 +203,48 @@ pre:hover::after {
 }
 
 /* ========================================
-   COMPONENTES ESPECÍFICOS
+   FEATURE GRID
    ======================================== */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
 
-/* Analogía */
+.feature-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--bg-color);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.feature-item i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature-item h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.feature-item p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ========================================
+   ANALOGY BOX
+   ======================================== */
 .analogy-box {
     background: var(--accent-light);
     border-left: 4px solid var(--accent);
@@ -203,7 +260,9 @@ pre:hover::after {
     font-size: 1.1rem;
 }
 
-/* Diagrama BLoC Básico */
+/* ========================================
+   DIAGRAMA BLoC BÁSICO
+   ======================================== */
 .bloc-diagram {
     display: flex;
     align-items: center;
@@ -237,7 +296,9 @@ pre:hover::after {
     margin: 0 1rem;
 }
 
-/* Estructura de Carpetas */
+/* ========================================
+   FILE TREE
+   ======================================== */
 .file-tree {
     background-color: #f8fafc;
     border: 1px solid var(--border);
@@ -252,7 +313,9 @@ pre:hover::after {
     font-size: 0.85rem;
 }
 
-/* Pros y Contras */
+/* ========================================
+   PROS Y CONTRAS
+   ======================================== */
 .pros-cons-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -277,7 +340,74 @@ pre:hover::after {
 .pro-box h4 { color: var(--success); margin-bottom: 0.5rem; font-size: 1.1rem; }
 .con-box h4 { color: var(--error); margin-bottom: 0.5rem; font-size: 1.1rem; }
 
-/* Diagrama Arquitectónico Avanzado */
+/* ========================================
+   WARNING BOX
+   ======================================== */
+.warning-box {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.warning-box i {
+    color: var(--warning);
+    font-size: 1.5rem;
+    margin-top: 0.2rem;
+}
+
+.warning-box div {
+    flex: 1;
+}
+
+.warning-box p {
+    margin: 0;
+}
+
+/* ========================================
+   EXAMPLES GRID
+   ======================================== */
+.examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.example-card {
+    background: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.example-card:hover {
+    transform: scale(1.02);
+}
+
+.example-card i {
+    margin-bottom: 0.5rem;
+}
+
+.example-card h4 {
+    margin: 0.5rem 0;
+}
+
+.example-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ========================================
+   DIAGRAMA AVANZADO
+   ======================================== */
 .advanced-diagram {
     display: flex;
     flex-direction: column;
@@ -342,7 +472,9 @@ pre:hover::after {
     white-space: nowrap;
 }
 
-/* Mockups Móviles */
+/* ========================================
+   MOCKUPS MÓVILES
+   ======================================== */
 .mockups-container {
     display: flex;
     justify-content: center;
@@ -488,6 +620,386 @@ pre:hover::after {
 }
 
 /* ========================================
+   CODE EDITOR
+   ======================================== */
+.code-editor {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    background: #1f2937;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: #374151;
+    border-bottom: 1px solid #4b5563;
+}
+
+.editor-tab {
+    color: #9ca3af;
+    font-size: 0.85rem;
+    font-family: 'Fira Code', monospace;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+}
+
+.editor-tab.active {
+    color: white;
+    background: #4b5563;
+}
+
+.editor-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.editor-actions button {
+    padding: 0.25rem 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: all 0.3s ease;
+}
+
+.btn-run {
+    background: var(--success);
+    color: white;
+}
+
+.btn-run:hover {
+    background: #059669;
+    transform: scale(1.05);
+}
+
+.btn-reset {
+    background: #6b7280;
+    color: white;
+}
+
+.btn-reset:hover {
+    background: #4b5563;
+    transform: scale(1.05);
+}
+
+.editor-body textarea {
+    width: 100%;
+    min-height: 400px;
+    padding: 1rem;
+    background: #1f2937;
+    color: #f8f8f2;
+    border: none;
+    font-family: 'Fira Code', 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    tab-size: 2;
+}
+
+.editor-body textarea::selection {
+    background: #4b5563;
+}
+
+.editor-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    background: #374151;
+    color: #9ca3af;
+    font-size: 0.8rem;
+    border-top: 1px solid #4b5563;
+}
+
+.editor-footer i {
+    margin-right: 0.3rem;
+}
+
+/* ========================================
+   CODE OUTPUT
+   ======================================== */
+.code-output {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1rem 0;
+    background: #1f2937;
+}
+
+.output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: #374151;
+    color: white;
+}
+
+.output-header button {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.output-header button:hover {
+    color: white;
+}
+
+#output-content {
+    padding: 1rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    color: #f8f8f2;
+    white-space: pre-wrap;
+    min-height: 100px;
+}
+
+#output-content .success {
+    color: #34d399;
+}
+
+#output-content .error {
+    color: #f87171;
+}
+
+#output-content .info {
+    color: #60a5fa;
+}
+
+#output-content .warning {
+    color: #fbbf24;
+}
+
+/* ========================================
+   HINT BOX
+   ======================================== */
+.hint-box {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.hint-box i {
+    color: var(--warning);
+    font-size: 1.5rem;
+    margin-top: 0.2rem;
+}
+
+.hint-box div {
+    flex: 1;
+}
+
+/* ========================================
+   QUIZ
+   ======================================== */
+#quiz-container {
+    margin: 1.5rem 0;
+}
+
+.question-item {
+    background: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.question-item:hover {
+    border-color: var(--accent);
+}
+
+.question-item.correct {
+    border-color: var(--success);
+    background: #f0fdf4;
+}
+
+.question-item.incorrect {
+    border-color: var(--error);
+    background: #fef2f2;
+}
+
+.question-text {
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.question-text .number {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.options label:hover {
+    background: #f3f4f6;
+}
+
+.options input[type="radio"] {
+    accent-color: var(--accent);
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.options label.disabled {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.options label.disabled:hover {
+    background: transparent;
+}
+
+/* ========================================
+   QUIZ CONTROLS
+   ======================================== */
+.quiz-controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.quiz-controls button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #01447a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 86, 155, 0.3);
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: var(--text-main);
+}
+
+.btn-secondary:hover {
+    background: #d1d5db;
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   QUIZ RESULT
+   ======================================== */
+#quiz-result {
+    margin-top: 2rem;
+}
+
+.result-card {
+    text-align: center;
+    padding: 2rem;
+    background: var(--card-bg);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    animation: fadeInUp 0.5s ease;
+}
+
+.result-card .fa-trophy {
+    font-size: 3rem;
+    color: var(--warning);
+    margin-bottom: 1rem;
+}
+
+.result-card h3 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.score-bar {
+    width: 100%;
+    height: 12px;
+    background: var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+#score-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--warning), var(--success));
+    border-radius: 6px;
+    transition: width 1s ease;
+}
+
+#score-message {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin: 0.5rem 0 1.5rem;
+}
+
+/* ========================================
+   SUCCESS BOX
+   ======================================== */
+.success-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.success-box i {
+    color: var(--success);
+    font-size: 1.5rem;
+    margin-top: 0.2rem;
+}
+
+.success-box div {
+    flex: 1;
+}
+
+/* ========================================
    FOOTER
    ======================================== */
 footer {
@@ -528,10 +1040,8 @@ footer {
 }
 
 /* ========================================
-   MEDIA QUERIES - RESPONSIVE
+   RESPONSIVE
    ======================================== */
-
-/* Tablets */
 @media (max-width: 768px) {
     body { padding: 1rem; }
     .topic-card { padding: 1.5rem; }
@@ -540,9 +1050,15 @@ footer {
     .diagram-row { flex-wrap: wrap; justify-content: center; }
     .mockups-container { gap: 1.5rem; }
     .mobile-phone { width: 180px; height: 380px; }
+    .header-stats { gap: 1rem; }
+    .header-stats span { font-size: 0.75rem; padding: 0.3rem 0.75rem; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .examples-grid { grid-template-columns: 1fr; }
+    .editor-body textarea { min-height: 300px; font-size: 0.8rem; }
+    .quiz-controls { flex-direction: column; }
+    .quiz-controls button { width: 100%; justify-content: center; }
 }
 
-/* Móviles */
 @media (max-width: 480px) {
     body { padding: 0.8rem; }
     .topic-card { padding: 1.2rem; }
@@ -555,19 +1071,13 @@ footer {
     .app-bar { font-size: 0.8rem; padding: 1.5rem 0.5rem 0.5rem 0.5rem; }
     .mockup-caption { font-size: 0.7rem; }
     #btn-top { width: 40px; height: 40px; font-size: 1.2rem; bottom: 1rem; right: 1rem; }
+    .editor-header { flex-direction: column; gap: 0.5rem; }
+    .editor-actions { width: 100%; }
+    .editor-actions button { flex: 1; justify-content: center; font-size: 0.75rem; }
 }
 
-/* Pantallas grandes */
 @media (min-width: 1200px) {
     .container { max-width: 1100px; }
     .topic-card { padding: 3rem; }
     .mockups-container { gap: 3rem; }
 }
-
-/* ========================================
-   UTILIDADES
-   ======================================== */
-.text-center { text-align: center; }
-.text-muted { color: var(--text-muted); }
-.mt-1 { margin-top: 1rem; }
-.mb-1 { margin-bottom: 1rem; }

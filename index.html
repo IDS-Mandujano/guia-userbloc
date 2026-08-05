@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guía de Estudio: UserBloc en Flutter</title>
     
-    <!-- CSS Externo -->
+    <!-- CSS Externo - ¡RUTA CORRECTA! -->
     <link rel="stylesheet" href="css/styles.css">
     
-    <!-- Meta tags para SEO y compatibilidad -->
-    <meta name="description" content="Guía completa de UserBloc en Flutter - Arquitectura, implementación y casos de uso">
-    <meta name="theme-color" content="#02569B">
-    <meta name="author" content="Tu Nombre">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Favicon opcional -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <meta name="description" content="Guía completa de UserBloc en Flutter">
+    <meta name="theme-color" content="#02569B">
 </head>
 <body>
     <main class="container">
@@ -25,96 +23,118 @@
             <div class="progress-bar">
                 <span style="width: 0%;"></span>
             </div>
+            <div class="header-stats">
+                <span><i class="fas fa-book"></i> 11 Temas</span>
+                <span><i class="fas fa-question-circle"></i> 10 Preguntas</span>
+                <span><i class="fas fa-code"></i> 1 Editor</span>
+            </div>
         </header>
 
         <!-- ======================================== -->
         <!-- SECCIÓN 1: INTRODUCCIÓN                   -->
         <!-- ======================================== -->
         <section class="topic-card" id="introduccion">
-            <h2>1. ¿Qué es un UserBloc y para qué se usa?</h2>
+            <h2><i class="fas fa-rocket"></i> 1. ¿Qué es un UserBloc y para qué se usa?</h2>
             
-            <p>En Flutter, un <strong>UserBloc</strong> es una implementación específica del patrón de arquitectura <strong>BLoC (Business Logic Component)</strong>. Su objetivo es gestionar el estado y la información del usuario, separando completamente la interfaz gráfica (UI) de la lógica de negocio.</p>
-            
-            <p>El patrón BLoC funciona bajo un sistema de "entradas y salidas":</p>
-            <ul>
-                <li><strong>Eventos (Events):</strong> Son las "entradas". Acciones que ocurren en la aplicación (ej. presionar "Iniciar sesión").</li>
-                <li><strong>Estados (States):</strong> Son las "salidas". Es la forma en la que se encuentra la app tras procesar el evento (ej. "Cargando", "Error", "Éxito"). La UI escucha estos estados y se redibuja.</li>
-            </ul>
-            
-            <p>Un UserBloc es el "cerebro" detrás de la pantalla, creado específicamente para manejar todo lo relacionado con el usuario. Sus responsabilidades principales son:</p>
-            
-            <ul>
-                <li><strong>Autenticación:</strong> Manejar el inicio de sesión (login), cierre de sesión (logout) y registro.</li>
-                <li><strong>Gestión de Sesión:</strong> Saber si hay un usuario activo actualmente o si su sesión expiró por tiempo.</li>
-                <li><strong>Datos del Perfil:</strong> Obtener, guardar y actualizar la información del usuario (nombre, foto, matrícula, etc.).</li>
-            </ul>
+            <div class="content-wrapper">
+                <p>En Flutter, un <strong>UserBloc</strong> es una implementación específica del patrón de arquitectura <strong>BLoC (Business Logic Component)</strong>. Su objetivo es gestionar el estado y la información del usuario, separando completamente la interfaz gráfica (UI) de la lógica de negocio.</p>
+                
+                <p>El patrón BLoC funciona bajo un sistema de "entradas y salidas":</p>
+                <ul>
+                    <li><strong><i class="fas fa-arrow-right" style="color: var(--warning);"></i> Eventos (Events):</strong> Son las "entradas". Acciones que ocurren en la aplicación (ej. presionar "Iniciar sesión").</li>
+                    <li><strong><i class="fas fa-arrow-left" style="color: var(--success);"></i> Estados (States):</strong> Son las "salidas". Es la forma en la que se encuentra la app tras procesar el evento (ej. "Cargando", "Error", "Éxito"). La UI escucha estos estados y se redibuja.</li>
+                </ul>
+                
+                <p>Un UserBloc es el "cerebro" detrás de la pantalla, creado específicamente para manejar todo lo relacionado con el usuario. Sus responsabilidades principales son:</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-user-lock" style="color: var(--accent);"></i>
+                        <h4>Autenticación</h4>
+                        <p>Manejar login, logout y registro</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-clock" style="color: var(--warning);"></i>
+                        <h4>Gestión de Sesión</h4>
+                        <p>Control de usuario activo y expiración</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-user-edit" style="color: var(--success);"></i>
+                        <h4>Datos del Perfil</h4>
+                        <p>Obtener y actualizar información del usuario</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- ======================================== -->
         <!-- SECCIÓN 2: FUNDAMENTOS                    -->
         <!-- ======================================== -->
         <section class="topic-card" id="fundamentos">
-            <h2>2. Fundamentos: Las Bases del BLoC</h2>
+            <h2><i class="fas fa-brain"></i> 2. Fundamentos: Las Bases del BLoC</h2>
             
-            <p>Antes de arquitecturas como BLoC, los desarrolladores mezclaban el diseño de la pantalla con las consultas a la base de datos en un mismo archivo (conocido como <em>código espagueti</em>). BLoC fue impulsado por Google para resolver esto mediante la <strong>Separación de Preocupaciones (Separation of Concerns)</strong>.</p>
-            
-            <p>Es necesario porque permite que la UI sea "tonta"; la pantalla no sabe cómo iniciar sesión, solo sabe que si el UserBloc le manda un estado <code>UserLoadingState</code>, debe mostrar un círculo girando, y si le manda <code>UserAuthenticatedState</code>, debe dejar pasar al usuario.</p>
+            <div class="content-wrapper">
+                <p>Antes de arquitecturas como BLoC, los desarrolladores mezclaban el diseño de la pantalla con las consultas a la base de datos en un mismo archivo (conocido como <em>código espagueti</em>). BLoC fue impulsado por Google para resolver esto mediante la <strong>Separación de Preocupaciones (Separation of Concerns)</strong>.</p>
+                
+                <p>Es necesario porque permite que la UI sea "tonta"; la pantalla no sabe cómo iniciar sesión, solo sabe que si el UserBloc le manda un estado <code>UserLoadingState</code>, debe mostrar un círculo girando, y si le manda <code>UserAuthenticatedState</code>, debe dejar pasar al usuario.</p>
 
-            <div class="analogy-box">
-                <strong>🍽️ La Analogía del Restaurante</strong>
-                <p>Imagina que la aplicación es un restaurante.</p>
-                <ul style="margin-top: 0.5rem; margin-bottom: 0;">
-                    <li><strong>El Cliente (La UI):</strong> Solo lee el menú y pide comida. No sabe cocinar.</li>
-                    <li><strong>La Orden / El Ticket (Eventos):</strong> El cliente pide una hamburguesa (ej. <code>LoginEvent</code>).</li>
-                    <li><strong>El Chef (UserBloc):</strong> Recibe el ticket, va a la despensa (Base de datos/API), prepara la carne y cocina (Lógica de negocio).</li>
-                    <li><strong>El Platillo (Estados):</strong> El Chef saca el platillo terminado (<code>SuccessState</code>) o avisa que no hay ingredientes (<code>ErrorState</code>). El cliente solo reacciona a lo que recibe en la mesa.</li>
+                <div class="analogy-box">
+                    <strong><i class="fas fa-utensils"></i> La Analogía del Restaurante</strong>
+                    <p>Imagina que la aplicación es un restaurante.</p>
+                    <ul style="margin-top: 0.5rem; margin-bottom: 0;">
+                        <li><strong>El Cliente (La UI):</strong> Solo lee el menú y pide comida. No sabe cocinar.</li>
+                        <li><strong>La Orden / El Ticket (Eventos):</strong> El cliente pide una hamburguesa (ej. <code>LoginEvent</code>).</li>
+                        <li><strong>El Chef (UserBloc):</strong> Recibe el ticket, va a la despensa (Base de datos/API), prepara la carne y cocina (Lógica de negocio).</li>
+                        <li><strong>El Platillo (Estados):</strong> El Chef saca el platillo terminado (<code>SuccessState</code>) o avisa que no hay ingredientes (<code>ErrorState</code>). El cliente solo reacciona a lo que recibe en la mesa.</li>
+                    </ul>
+                </div>
+
+                <p><strong>Fundamentos Técnicos:</strong> El patrón BLoC se fundamenta en principios de ingeniería de software claros:</p>
+                <ul>
+                    <li><strong>Programación Reactiva (Streams):</strong> Internamente, utiliza <em>Streams</em> (flujos de datos asíncronos). La UI se "suscribe" a estos flujos y reacciona automáticamente cuando llega un nuevo dato.</li>
+                    <li><strong>Separation of Concerns:</strong> La UI solo se preocupa por <em>dibujar</em>. El BLoC solo se preocupa por <em>pensar</em> (validar, hacer peticiones a la API).</li>
                 </ul>
+                
+                <div class="bloc-diagram">
+                    <div class="diagram-box events">
+                        <i class="fas fa-arrow-right"></i> Evento<br>
+                        <small style="font-weight: normal; color: #666;">LoginUserEvent</small>
+                    </div>
+                    <div class="arrow">➔</div>
+                    <div class="diagram-box bloc">
+                        <i class="fas fa-cogs"></i> UserBloc<br>
+                        <small style="font-weight: normal; color: #666;">(Procesa lógica)</small>
+                    </div>
+                    <div class="arrow">➔</div>
+                    <div class="diagram-box states">
+                        <i class="fas fa-arrow-left"></i> Estado<br>
+                        <small style="font-weight: normal; color: #666;">UserAuthenticated</small>
+                    </div>
+                </div>
+                <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted);">La UI envía el Evento, el BLoC lo procesa, y emite un Estado que la UI dibuja.</p>
             </div>
-
-            <p><strong>Fundamentos Técnicos:</strong> El patrón BLoC se fundamenta en principios de ingeniería de software claros:</p>
-            <ul>
-                <li><strong>Programación Reactiva (Streams):</strong> Internamente, utiliza <em>Streams</em> (flujos de datos asíncronos). La UI se "suscribe" a estos flujos y reacciona automáticamente cuando llega un nuevo dato.</li>
-                <li><strong>Separation of Concerns:</strong> La UI solo se preocupa por <em>dibujar</em>. El BLoC solo se preocupa por <em>pensar</em> (validar, hacer peticiones a la API).</li>
-            </ul>
-            
-            <div class="bloc-diagram">
-                <div class="diagram-box events">
-                    Evento<br>
-                    <small style="font-weight: normal; color: #666;">LoginUserEvent</small>
-                </div>
-                <div class="arrow">➔</div>
-                <div class="diagram-box bloc">
-                    UserBloc<br>
-                    <small style="font-weight: normal; color: #666;">(Procesa lógica)</small>
-                </div>
-                <div class="arrow">➔</div>
-                <div class="diagram-box states">
-                    Estado<br>
-                    <small style="font-weight: normal; color: #666;">UserAuthenticated</small>
-                </div>
-            </div>
-            <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted);">La UI envía el Evento, el BLoC lo procesa, y emite un Estado que la UI dibuja.</p>
         </section>
 
         <!-- ======================================== -->
         <!-- SECCIÓN 3: IMPLEMENTACIÓN                -->
         <!-- ======================================== -->
         <section class="topic-card" id="implementacion">
-            <h2>3. Implementación Técnica y Estructura</h2>
+            <h2><i class="fas fa-code"></i> 3. Implementación Técnica y Estructura</h2>
             
-            <h3>3.1 Dependencias (pubspec.yaml)</h3>
-            <p>Para implementar un UserBloc en Flutter, se utiliza un paquete oficial mantenido por la comunidad:</p>
-            <pre>
+            <div class="content-wrapper">
+                <h3>3.1 Dependencias (pubspec.yaml)</h3>
+                <p>Para implementar un UserBloc en Flutter, se utiliza un paquete oficial mantenido por la comunidad:</p>
+                <pre>
 dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3   # El gestor de estado
   equatable: ^2.0.5      # Para comparar estados fácilmente</pre>
 
-            <h3>3.2 Estructura de Carpetas</h3>
-            <p>En un proyecto profesional, se recomienda usar una arquitectura basada en "Features" (Características). El UserBloc suele vivir dentro del feature de <strong>Auth</strong> (Autenticación).</p>
-            
-            <div class="file-tree">
+                <h3>3.2 Estructura de Carpetas</h3>
+                <p>En un proyecto profesional, se recomienda usar una arquitectura basada en "Features" (Características). El UserBloc suele vivir dentro del feature de <strong>Auth</strong> (Autenticación).</p>
+                
+                <div class="file-tree">
 lib/
 └── features/
     └── authentication/
@@ -129,19 +149,19 @@ lib/
         └── views/
             └── login_page.dart  <span style="color: var(--text-muted);">// La UI gráfica</span></div>
 
-            <h3>3.3 Ubicación en el Proyecto</h3>
-            <p>Al ser la sesión del usuario algo que afecta a <em>toda</em> la aplicación, el UserBloc suele inicializarse en el archivo principal <code>main.dart</code>, usando un <code>BlocProvider</code> envolviendo a <code>MaterialApp</code>, para que cualquier pantalla pueda saber si el usuario está conectado.</p>
+                <h3>3.3 Ubicación en el Proyecto</h3>
+                <p>Al ser la sesión del usuario algo que afecta a <em>toda</em> la aplicación, el UserBloc suele inicializarse en el archivo principal <code>main.dart</code>, usando un <code>BlocProvider</code> envolviendo a <code>MaterialApp</code>, para que cualquier pantalla pueda saber si el usuario está conectado.</p>
 
-            <h3>3.4 Código Básico</h3>
-            <p>Un UserBloc siempre requiere 3 partes fundamentales:</p>
-            <ul>
-                <li><strong>Estado:</strong> <code>class UserAuthenticated extends UserState {}</code></li>
-                <li><strong>Evento:</strong> <code>class LoginRequested extends UserEvent {}</code></li>
-                <li><strong>Bloc:</strong> La clase que une ambos usando la función <code>on&lt;Evento&gt;</code> y <code>emit(Estado)</code>.</li>
-            </ul>
-            
-            <p><strong>Ejemplo de código básico:</strong></p>
-            <pre>
+                <h3>3.4 Código Básico</h3>
+                <p>Un UserBloc siempre requiere 3 partes fundamentales:</p>
+                <ul>
+                    <li><strong>Estado:</strong> <code>class UserAuthenticated extends UserState {}</code></li>
+                    <li><strong>Evento:</strong> <code>class LoginRequested extends UserEvent {}</code></li>
+                    <li><strong>Bloc:</strong> La clase que une ambos usando la función <code>on&lt;Evento&gt;</code> y <code>emit(Estado)</code>.</li>
+                </ul>
+                
+                <p><strong>Ejemplo de código básico:</strong></p>
+                <pre>
 // user_event.dart
 abstract class UserEvent {}
 class LoginRequested extends UserEvent {
@@ -181,59 +201,71 @@ class UserBloc extends Bloc&lt;UserEvent, UserState&gt; {
     }
   }
 }</pre>
+            </div>
         </section>
 
         <!-- ======================================== -->
         <!-- SECCIÓN 4: IDENTIFICACIÓN Y USO          -->
         <!-- ======================================== -->
         <section class="topic-card" id="identificacion">
-            <h2>4. Identificación y Cuándo Usarlo</h2>
+            <h2><i class="fas fa-search"></i> 4. Identificación y Cuándo Usarlo</h2>
             
-            <h3>4.1 ¿Cómo identificarlo en código ajeno?</h3>
-            <p>Si entras a trabajar a una empresa y necesitas saber si están usando un UserBloc, busca estas palabras clave:</p>
-            <ul>
-                <li>En la lógica verás clases que extienden de Bloc: <code>class UserBloc extends Bloc&lt;UserEvent, UserState&gt;</code>.</li>
-                <li>Verás el uso constante de la palabra <code>emit()</code> dentro de funciones, lo cual sirve para lanzar el nuevo estado.</li>
-                <li>En la Interfaz Gráfica (UI), verás widgets especiales como <code>BlocBuilder&lt;UserBloc, UserState&gt;</code> para redibujar la pantalla, o <code>BlocListener</code> para mostrar un SnackBar (alerta de error o éxito).</li>
-                <li>En las acciones de los botones (onPressed) verás algo como: <code>context.read&lt;UserBloc&gt;().add(LoginEvent())</code>.</li>
-            </ul>
+            <div class="content-wrapper">
+                <h3>4.1 ¿Cómo identificarlo en código ajeno?</h3>
+                <p>Si entras a trabajar a una empresa y necesitas saber si están usando un UserBloc, busca estas palabras clave:</p>
+                <ul>
+                    <li>En la lógica verás clases que extienden de Bloc: <code>class UserBloc extends Bloc&lt;UserEvent, UserState&gt;</code>.</li>
+                    <li>Verás el uso constante de la palabra <code>emit()</code> dentro de funciones, lo cual sirve para lanzar el nuevo estado.</li>
+                    <li>En la Interfaz Gráfica (UI), verás widgets especiales como <code>BlocBuilder&lt;UserBloc, UserState&gt;</code> para redibujar la pantalla, o <code>BlocListener</code> para mostrar un SnackBar (alerta de error o éxito).</li>
+                    <li>En las acciones de los botones (onPressed) verás algo como: <code>context.read&lt;UserBloc&gt;().add(LoginEvent())</code>.</li>
+                </ul>
 
-            <h3>4.2 ¿Cuándo usarlo y por qué?</h3>
-            <p>Debes usar UserBloc cuando el estado de autenticación o los datos del usuario son complejos y afectan a muchas pantallas. <strong>Por qué:</strong> Porque si usas un simple <code>setState</code>, tendrías que pasar la información del usuario de pantalla en pantalla a través del constructor, lo cual genera un problema llamado "Prop Drilling" (pasar parámetros infinitamente). BLoC lo hace accesible globalmente y de forma segura.</p>
+                <h3>4.2 ¿Cuándo usarlo y por qué?</h3>
+                <p>Debes usar UserBloc cuando el estado de autenticación o los datos del usuario son complejos y afectan a muchas pantallas. <strong>Por qué:</strong> Porque si usas un simple <code>setState</code>, tendrías que pasar la información del usuario de pantalla en pantalla a través del constructor, lo cual genera un problema llamado "Prop Drilling" (pasar parámetros infinitamente). BLoC lo hace accesible globalmente y de forma segura.</p>
 
-            <h3>4.3 ¿Para qué tipo de proyectos es ideal?</h3>
-            <ul>
-                <li><strong>Proyectos de mediana y gran escala:</strong> Aplicaciones empresariales, e-commerce, redes sociales o apps bancarias donde la seguridad del token del usuario y los roles (Admin vs Cliente) son estrictos.</li>
-                <li><strong>Trabajo en equipo:</strong> Al separar la UI de la lógica, un desarrollador puede estar programando el diseño del Login, mientras otro programa la lógica de la API en el UserBloc sin estorbarse.</li>
-            </ul>
-            
-            <p><strong>¿Para qué proyectos NO usarlo?</strong> No lo uses para un MVP rápido de 2 pantallas, o una aplicación sencilla que no tiene inicio de sesión. BLoC requiere mucho código repetitivo inicial (Boilerplate), por lo que usarlo en apps diminutas es matar una mosca con un cañón.</p>
+                <h3>4.3 ¿Para qué tipo de proyectos es ideal?</h3>
+                <ul>
+                    <li><strong>Proyectos de mediana y gran escala:</strong> Aplicaciones empresariales, e-commerce, redes sociales o apps bancarias donde la seguridad del token del usuario y los roles (Admin vs Cliente) son estrictos.</li>
+                    <li><strong>Trabajo en equipo:</strong> Al separar la UI de la lógica, un desarrollador puede estar programando el diseño del Login, mientras otro programa la lógica de la API en el UserBloc sin estorbarse.</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <p style="margin: 0; font-weight: bold;">¿Para qué proyectos NO usarlo?</p>
+                        <p style="margin: 0.5rem 0 0 0;">No lo uses para un MVP rápido de 2 pantallas, o una aplicación sencilla que no tiene inicio de sesión. BLoC requiere mucho código repetitivo inicial (Boilerplate), por lo que usarlo en apps diminutas es matar una mosca con un cañón.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- ======================================== -->
         <!-- SECCIÓN 5: VENTAJAS Y DESVENTAJAS        -->
         <!-- ======================================== -->
         <section class="topic-card" id="ventajas">
-            <h2>5. Ventajas y Desventajas</h2>
-            <p>Implementar BLoC para manejar usuarios es un estándar en la industria, pero como cualquier arquitectura, tiene sus pros y contras.</p>
+            <h2><i class="fas fa-balance-scale"></i> 5. Ventajas y Desventajas</h2>
             
-            <div class="pros-cons-grid">
-                <div class="pro-box">
-                    <h4>👍 Ventajas</h4>
-                    <ul>
-                        <li><strong>Separación estricta:</strong> La vista (UI) no contiene lógica de negocio, lo que hace el código muy limpio.</li>
-                        <li><strong>Testabilidad:</strong> Es muy fácil hacer pruebas unitarias (Unit Tests) al Bloc, ya que no depende de los widgets de la pantalla.</li>
-                        <li><strong>Escalabilidad global:</strong> Si la sesión expira en el backend, el UserBloc emite un estado y desloguea al usuario instantáneamente sin importar en qué pantalla esté.</li>
-                        <li><strong>Reutilización:</strong> La lógica puede compartirse si decides portar tu app de Flutter Móvil a Flutter Web.</li>
-                    </ul>
-                </div>
-                <div class="con-box">
-                    <h4>👎 Desventajas</h4>
-                    <ul>
-                        <li><strong>Curva de aprendizaje:</strong> Requiere entender conceptos avanzados como Streams, Yields y programación reactiva.</li>
-                        <li><strong>Exceso de Boilerplate:</strong> Para hacer algo sencillo (como un simple login) necesitas crear 3 archivos distintos (Eventos, Estados, Bloc) y escribir mucho código inicial.</li>
-                        <li><strong>Overengineering:</strong> Para aplicaciones muy pequeñas o proyectos escolares básicos, usar BLoC puede ser una complejidad innecesaria en comparación con <code>Provider</code> o <code>GetX</code>.</li>
-                    </ul>
+            <div class="content-wrapper">
+                <p>Implementar BLoC para manejar usuarios es un estándar en la industria, pero como cualquier arquitectura, tiene sus pros y contras.</p>
+                
+                <div class="pros-cons-grid">
+                    <div class="pro-box">
+                        <h4><i class="fas fa-thumbs-up"></i> Ventajas</h4>
+                        <ul>
+                            <li><strong>Separación estricta:</strong> La vista (UI) no contiene lógica de negocio, lo que hace el código muy limpio.</li>
+                            <li><strong>Testabilidad:</strong> Es muy fácil hacer pruebas unitarias (Unit Tests) al Bloc, ya que no depende de los widgets de la pantalla.</li>
+                            <li><strong>Escalabilidad global:</strong> Si la sesión expira en el backend, el UserBloc emite un estado y desloguea al usuario instantáneamente sin importar en qué pantalla esté.</li>
+                            <li><strong>Reutilización:</strong> La lógica puede compartirse si decides portar tu app de Flutter Móvil a Flutter Web.</li>
+                        </ul>
+                    </div>
+                    <div class="con-box">
+                        <h4><i class="fas fa-thumbs-down"></i> Desventajas</h4>
+                        <ul>
+                            <li><strong>Curva de aprendizaje:</strong> Requiere entender conceptos avanzados como Streams, Yields y programación reactiva.</li>
+                            <li><strong>Exceso de Boilerplate:</strong> Para hacer algo sencillo (como un simple login) necesitas crear 3 archivos distintos (Eventos, Estados, Bloc) y escribir mucho código inicial.</li>
+                            <li><strong>Overengineering:</strong> Para aplicaciones muy pequeñas o proyectos escolares básicos, usar BLoC puede ser una complejidad innecesaria en comparación con <code>Provider</code> o <code>GetX</code>.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -242,168 +274,309 @@ class UserBloc extends Bloc&lt;UserEvent, UserState&gt; {
         <!-- SECCIÓN 6: EJEMPLOS REALES               -->
         <!-- ======================================== -->
         <section class="topic-card" id="ejemplos">
-            <h2>6. Ejemplos Reales: ¿Dónde se usa?</h2>
-            <p>En el mundo real, un UserBloc es el pilar de seguridad e identidad en aplicaciones complejas:</p>
-            <ul>
-                <li><strong>Aplicaciones Bancarias y Fintech (Ej. BBVA o Mercado Pago):</strong> Estas apps requieren un control de sesión hiperestricto. El UserBloc gestiona un estado llamado <code>UserSessionTimeout</code> que se dispara si el usuario no toca la pantalla en 5 minutos, emitiendo un evento automático que bloquea la app y exige el NIP o huella digital nuevamente.</li>
-                <li><strong>Aplicaciones de Rutas o Delivery (Ej. Uber, APIs logísticas):</strong> En aplicaciones que manejan roles, el UserBloc verifica al iniciar sesión si el usuario es "Conductor" o "Pasajero". Dependiendo del estado emitido (<code>UserAuthenticatedDriver</code> o <code>UserAuthenticatedClient</code>), la aplicación inyecta diferentes rutas o interfaces de mapa.</li>
-                <li><strong>Plataformas de E-Commerce (Ej. Amazon):</strong> Permite navegar como "Invitado" (Estado: <code>UserUnauthenticated</code>). Pero al momento de presionar "Comprar", la UI verifica el UserBloc y, si no hay sesión activa, intercepta la acción para mostrar el modal de Login.</li>
-            </ul>
+            <h2><i class="fas fa-building"></i> 6. Ejemplos Reales: ¿Dónde se usa?</h2>
+            
+            <div class="content-wrapper">
+                <p>En el mundo real, un UserBloc es el pilar de seguridad e identidad en aplicaciones complejas:</p>
+                
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <i class="fas fa-university" style="color: var(--accent); font-size: 2rem;"></i>
+                        <h4>Aplicaciones Bancarias</h4>
+                        <p>Apps como BBVA o Mercado Pago requieren control de sesión hiperestricto. El UserBloc gestiona <code>UserSessionTimeout</code> que bloquea la app tras inactividad.</p>
+                    </div>
+                    <div class="example-card">
+                        <i class="fas fa-taxi" style="color: var(--warning); font-size: 2rem;"></i>
+                        <h4>Aplicaciones de Delivery</h4>
+                        <p>Uber verifica roles: "Conductor" o "Pasajero". El UserBloc inyecta diferentes interfaces según el estado emitido.</p>
+                    </div>
+                    <div class="example-card">
+                        <i class="fas fa-shopping-cart" style="color: var(--success); font-size: 2rem;"></i>
+                        <h4>E-Commerce</h4>
+                        <p>Amazon permite navegar como "Invitado" pero al comprar, la UI verifica el UserBloc para mostrar Login si no hay sesión activa.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- ======================================== -->
         <!-- SECCIÓN 7: DIAGRAMA AVANZADO             -->
         <!-- ======================================== -->
         <section class="topic-card" id="diagrama">
-            <h2>7. Diagrama Arquitectónico: Flujo de Trabajo</h2>
-            <p>Este es el flujo de vida completo de un UserBloc conectándose a una base de datos o API externa.</p>
+            <h2><i class="fas fa-project-diagram"></i> 7. Diagrama Arquitectónico: Flujo de Trabajo</h2>
             
-            <div class="advanced-diagram">
-                <!-- Paso 1: UI -> Bloc -->
-                <div class="diagram-row">
-                    <div class="diagram-node node-ui">
-                        UI / Pantalla<br>
-                        <small style="font-weight: normal;">(Botón Login)</small>
+            <div class="content-wrapper">
+                <p>Este es el flujo de vida completo de un UserBloc conectándose a una base de datos o API externa.</p>
+                
+                <div class="advanced-diagram">
+                    <!-- Paso 1: UI -> Bloc -->
+                    <div class="diagram-row">
+                        <div class="diagram-node node-ui">
+                            <i class="fas fa-mobile-alt"></i> UI / Pantalla<br>
+                            <small style="font-weight: normal;">(Botón Login)</small>
+                        </div>
+                        <div class="diagram-arrow">
+                            <span class="diagram-label">1. Agrega <code>LoginEvent</code></span>
+                        </div>
+                        <div class="diagram-node" style="border-color: var(--accent); color: var(--accent);">
+                            <i class="fas fa-cogs"></i> UserBloc<br>
+                            <small style="font-weight: normal;">(Recibe Evento)</small>
+                        </div>
                     </div>
-                    <div class="diagram-arrow">
-                        <span class="diagram-label">1. Agrega <code>LoginEvent</code></span>
-                    </div>
-                    <div class="diagram-node" style="border-color: var(--accent); color: var(--accent);">
-                        UserBloc<br>
-                        <small style="font-weight: normal;">(Recibe Evento)</small>
-                    </div>
-                </div>
 
-                <!-- Paso 2: Bloc -> API -->
-                <div class="diagram-row" style="justify-content: flex-end; width: 70%; margin-left: auto;">
-                    <div class="diagram-arrow" style="transform: scaleX(-1);">
-                        <span class="diagram-label" style="transform: scaleX(-1) translateX(50%);">2. Petición HTTP</span>
+                    <!-- Paso 2: Bloc -> API -->
+                    <div class="diagram-row" style="justify-content: flex-end; width: 70%; margin-left: auto;">
+                        <div class="diagram-arrow" style="transform: scaleX(-1);">
+                            <span class="diagram-label" style="transform: scaleX(-1) translateX(50%);">2. Petición HTTP</span>
+                        </div>
+                        <div class="diagram-node node-api">
+                            <i class="fas fa-server"></i> API Backend<br>
+                            <small style="font-weight: normal;">(Valida Datos)</small>
+                        </div>
                     </div>
-                    <div class="diagram-node node-api">
-                        API Backend<br>
-                        <small style="font-weight: normal;">(Valida Datos)</small>
-                    </div>
-                </div>
 
-                <!-- Paso 3: API -> Bloc -->
-                <div class="diagram-row" style="justify-content: flex-end; width: 70%; margin-left: auto;">
-                    <div class="diagram-node node-api">
-                        API Backend
+                    <!-- Paso 3: API -> Bloc -->
+                    <div class="diagram-row" style="justify-content: flex-end; width: 70%; margin-left: auto;">
+                        <div class="diagram-node node-api">
+                            <i class="fas fa-server"></i> API Backend
+                        </div>
+                        <div class="diagram-arrow">
+                            <span class="diagram-label">3. Devuelve Token / JSON</span>
+                        </div>
+                        <div class="diagram-node" style="border-color: var(--accent); color: var(--accent);">
+                            <i class="fas fa-cogs"></i> UserBloc<br>
+                            <small style="font-weight: normal;">(Procesa Data)</small>
+                        </div>
                     </div>
-                    <div class="diagram-arrow">
-                        <span class="diagram-label">3. Devuelve Token / JSON</span>
-                    </div>
-                    <div class="diagram-node" style="border-color: var(--accent); color: var(--accent);">
-                        UserBloc<br>
-                        <small style="font-weight: normal;">(Procesa Data)</small>
-                    </div>
-                </div>
 
-                <!-- Paso 4: Bloc -> UI -->
-                <div class="diagram-row">
-                    <div class="diagram-node" style="border-color: var(--accent); color: var(--accent);">
-                        UserBloc
-                    </div>
-                    <div class="diagram-arrow">
-                        <span class="diagram-label">4. Emite <code>UserAuthenticatedState</code></span>
-                    </div>
-                    <div class="diagram-node node-ui">
-                        UI / Pantalla<br>
-                        <small style="font-weight: normal;">(BlocBuilder redibuja)</small>
+                    <!-- Paso 4: Bloc -> UI -->
+                    <div class="diagram-row">
+                        <div class="diagram-node" style="border-color: var(--accent); color: var(--accent);">
+                            <i class="fas fa-cogs"></i> UserBloc
+                        </div>
+                        <div class="diagram-arrow">
+                            <span class="diagram-label">4. Emite <code>UserAuthenticatedState</code></span>
+                        </div>
+                        <div class="diagram-node node-ui">
+                            <i class="fas fa-mobile-alt"></i> UI / Pantalla<br>
+                            <small style="font-weight: normal;">(BlocBuilder redibuja)</small>
+                        </div>
                     </div>
                 </div>
+                <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-info-circle"></i> El flujo es unidireccional. La pantalla jamás toca la API. Todo pasa a través del BLoC.</p>
             </div>
-            <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted);">El flujo es unidireccional. La pantalla jamás toca la API. Todo pasa a través del BLoC.</p>
         </section>
 
         <!-- ======================================== -->
         <!-- SECCIÓN 8: REPRESENTACIÓN GRÁFICA       -->
         <!-- ======================================== -->
         <section class="topic-card" id="representacion">
-            <h2>8. Representación Gráfica en Pantallas Móviles</h2>
-            <p>Así es como el <code>BlocBuilder</code> transforma la interfaz gráfica en tiempo real dependiendo de los 3 estados principales que emite el <strong>UserBloc</strong>.</p>
+            <h2><i class="fas fa-mobile-screen"></i> 8. Representación Gráfica en Pantallas Móviles</h2>
             
-            <div class="mockups-container">
+            <div class="content-wrapper">
+                <p>Así es como el <code>BlocBuilder</code> transforma la interfaz gráfica en tiempo real dependiendo de los 3 estados principales que emite el <strong>UserBloc</strong>.</p>
                 
-                <!-- Celular 1: No Autenticado -->
-                <div>
-                    <div class="mobile-phone">
-                        <div class="notch"></div>
-                        <div class="app-bar">Bienvenido</div>
-                        <div class="screen-content" style="justify-content: center;">
-                            <h3 style="text-align: center; margin-bottom: 1rem; font-size: 1.1rem;">Iniciar Sesión</h3>
-                            <div class="login-input"></div>
-                            <div class="login-input"></div>
-                            <div class="login-btn">Entrar</div>
-                        </div>
-                    </div>
-                    <div class="mockup-caption" style="color: var(--error);">Estado: UserUnauthenticated</div>
-                </div>
-
-                <!-- Celular 2: Cargando -->
-                <div>
-                    <div class="mobile-phone">
-                        <div class="notch"></div>
-                        <div class="app-bar">Autenticando...</div>
-                        <div class="screen-content" style="justify-content: center;">
-                            <div class="spinner"></div>
-                            <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-weight: bold; font-size: 0.8rem;">Validando credenciales</p>
-                        </div>
-                    </div>
-                    <div class="mockup-caption" style="color: var(--warning);">Estado: UserLoading</div>
-                </div>
-
-                <!-- Celular 3: Autenticado -->
-                <div>
-                    <div class="mobile-phone">
-                        <div class="notch"></div>
-                        <div class="app-bar" style="background: var(--success);">Inicio</div>
-                        <div class="screen-content">
-                            <div class="mockup-userblock">
-                                <div class="mockup-avatar">JE</div>
-                                <div>
-                                    <div style="font-weight: bold; font-size: 0.8rem;">Jesús Eduardo</div>
-                                    <div style="font-size: 0.65rem; color: var(--text-muted);">Estudiante</div>
-                                </div>
+                <div class="mockups-container">
+                    
+                    <!-- Celular 1: No Autenticado -->
+                    <div>
+                        <div class="mobile-phone">
+                            <div class="notch"></div>
+                            <div class="app-bar">Bienvenido</div>
+                            <div class="screen-content" style="justify-content: center;">
+                                <h3 style="text-align: center; margin-bottom: 1rem; font-size: 1.1rem;">Iniciar Sesión</h3>
+                                <div class="login-input"></div>
+                                <div class="login-input"></div>
+                                <div class="login-btn">Entrar</div>
                             </div>
-                            <h4 style="margin-bottom: 8px; font-size: 0.9rem;">Dashboard</h4>
-                            <div class="mockup-skeleton"></div>
-                            <div class="mockup-skeleton"></div>
-                            <div class="mockup-skeleton" style="height: 80px;"></div>
                         </div>
+                        <div class="mockup-caption" style="color: var(--error);"><i class="fas fa-user-slash"></i> Estado: UserUnauthenticated</div>
                     </div>
-                    <div class="mockup-caption" style="color: var(--success);">Estado: UserAuthenticated</div>
-                </div>
 
+                    <!-- Celular 2: Cargando -->
+                    <div>
+                        <div class="mobile-phone">
+                            <div class="notch"></div>
+                            <div class="app-bar">Autenticando...</div>
+                            <div class="screen-content" style="justify-content: center;">
+                                <div class="spinner"></div>
+                                <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-weight: bold; font-size: 0.8rem;">Validando credenciales</p>
+                            </div>
+                        </div>
+                        <div class="mockup-caption" style="color: var(--warning);"><i class="fas fa-spinner fa-spin"></i> Estado: UserLoading</div>
+                    </div>
+
+                    <!-- Celular 3: Autenticado -->
+                    <div>
+                        <div class="mobile-phone">
+                            <div class="notch"></div>
+                            <div class="app-bar" style="background: var(--success);">Inicio</div>
+                            <div class="screen-content">
+                                <div class="mockup-userblock">
+                                    <div class="mockup-avatar">JE</div>
+                                    <div>
+                                        <div style="font-weight: bold; font-size: 0.8rem;">Jesús Eduardo</div>
+                                        <div style="font-size: 0.65rem; color: var(--text-muted);">Estudiante</div>
+                                    </div>
+                                </div>
+                                <h4 style="margin-bottom: 8px; font-size: 0.9rem;">Dashboard</h4>
+                                <div class="mockup-skeleton"></div>
+                                <div class="mockup-skeleton"></div>
+                                <div class="mockup-skeleton" style="height: 80px;"></div>
+                            </div>
+                        </div>
+                        <div class="mockup-caption" style="color: var(--success);"><i class="fas fa-user-check"></i> Estado: UserAuthenticated</div>
+                    </div>
+
+                </div>
             </div>
         </section>
 
         <!-- ======================================== -->
-        <!-- SECCIÓN 9: RESUMEN Y CONCLUSIÓN         -->
+        <!-- SECCIÓN 9: EDITOR DE CÓDIGO INTERACTIVO -->
+        <!-- ======================================== -->
+        <section class="topic-card" id="editor">
+            <h2><i class="fas fa-laptop-code"></i> 9. ¡Practica! Editor de Código Interactivo</h2>
+            
+            <div class="content-wrapper">
+                <p><i class="fas fa-lightbulb" style="color: var(--warning);"></i> <strong>Ejercicio:</strong> Completa el código del UserBloc para manejar el evento de logout.</p>
+                <p>En el siguiente código, falta implementar el método <code>_onLogoutRequested</code>. Tu tarea es completarlo para que:</p>
+                <ul>
+                    <li>Emita el estado <code>UserLoading()</code> primero</li>
+                    <li>Llame a <code>repository.logout()</code></li>
+                    <li>Emita <code>UserUnauthenticated()</code> si tiene éxito</li>
+                    <li>Emita <code>UserError('Error al cerrar sesión')</code> si falla</li>
+                </ul>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span class="editor-tab active">user_bloc.dart</span>
+                        <span class="editor-actions">
+                            <button class="btn-run" onclick="runCode()"><i class="fas fa-play"></i> Ejecutar</button>
+                            <button class="btn-reset" onclick="resetCode()"><i class="fas fa-undo"></i> Reiniciar</button>
+                        </span>
+                    </div>
+                    <div class="editor-body">
+                        <textarea id="code-editor" spellcheck="false">
+class UserBloc extends Bloc&lt;UserEvent, UserState&gt; {
+  final AuthRepository repository;
+  
+  UserBloc(this.repository) : super(UserInitial()) {
+    on&lt;LoginRequested&gt;(_onLoginRequested);
+    on&lt;LogoutRequested&gt;(_onLogoutRequested);
+  }
+  
+  void _onLoginRequested(LoginRequested event, Emitter&lt;UserState&gt; emit) async {
+    emit(UserLoading());
+    try {
+      final user = await repository.login(event.email, event.password);
+      emit(UserAuthenticated(user));
+    } catch (e) {
+      emit(UserError(e.toString()));
+    }
+  }
+  
+  // ✏️ COMPLETA ESTE MÉTODO
+  void _onLogoutRequested(LogoutRequested event, Emitter&lt;UserState&gt; emit) async {
+    // Tu código aquí
+    // 1. Emite UserLoading()
+    // 2. Llama a repository.logout()
+    // 3. Emite UserUnauthenticated() o UserError()
+  }
+}</textarea>
+                    </div>
+                    <div class="editor-footer">
+                        <span><i class="fas fa-info-circle"></i> Líneas: <span id="line-count">0</span></span>
+                        <span><i class="fas fa-keyboard"></i> Escribe tu código aquí</span>
+                    </div>
+                </div>
+                
+                <div id="code-output" class="code-output" style="display: none;">
+                    <div class="output-header">
+                        <span><i class="fas fa-terminal"></i> Salida</span>
+                        <button onclick="clearOutput()"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div id="output-content"></div>
+                </div>
+                
+                <div class="hint-box">
+                    <i class="fas fa-lightbulb" style="color: var(--warning);"></i>
+                    <div>
+                        <strong>Pista:</strong> Recuerda usar <code>emit(UserLoading())</code> al inicio, luego <code>await repository.logout()</code>, y finalmente <code>emit(UserUnauthenticated())</code> o <code>emit(UserError('Mensaje de error'))</code>.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- SECCIÓN 10: CUESTIONARIO                -->
+        <!-- ======================================== -->
+        <section class="topic-card" id="cuestionario">
+            <h2><i class="fas fa-question-circle"></i> 10. Cuestionario de Autoevaluación</h2>
+            
+            <div class="content-wrapper">
+                <p>¡Pon a prueba tus conocimientos! Responde las siguientes preguntas y obtén tu puntuación.</p>
+                
+                <div id="quiz-container">
+                    <!-- Las preguntas se generarán con JavaScript -->
+                </div>
+                
+                <div class="quiz-controls">
+                    <button id="submit-quiz" class="btn-primary" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Calificar Cuestionario
+                    </button>
+                    <button id="reset-quiz" class="btn-secondary" onclick="resetQuiz()">
+                        <i class="fas fa-redo"></i> Reiniciar
+                    </button>
+                </div>
+                
+                <div id="quiz-result" style="display: none;">
+                    <div class="result-card">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Tu Puntuación: <span id="score">0</span></h3>
+                        <div class="score-bar">
+                            <div id="score-bar-fill" style="width: 0%;"></div>
+                        </div>
+                        <p id="score-message"></p>
+                        <button onclick="resetQuiz()" class="btn-primary">
+                            <i class="fas fa-redo"></i> Intentar de Nuevo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- SECCIÓN 11: RESUMEN Y BUENAS PRÁCTICAS   -->
         <!-- ======================================== -->
         <section class="topic-card" id="resumen">
-            <h2>9. Resumen y Buenas Prácticas</h2>
+            <h2><i class="fas fa-graduation-cap"></i> 11. Resumen y Buenas Prácticas</h2>
             
-            <h3>📌 Puntos Clave</h3>
-            <ul>
-                <li><strong>UserBloc</strong> es una implementación del patrón BLoC para manejar el estado del usuario en Flutter.</li>
-                <li>Separa la <strong>UI</strong> (diseño) de la <strong>Lógica de Negocio</strong> (autenticación, API).</li>
-                <li>Funciona con un flujo unidireccional: <strong>Evento → BLoC → Estado → UI</strong>.</li>
-                <li>Ideal para aplicaciones <strong>medianas y grandes</strong> con requisitos de seguridad y roles.</li>
-            </ul>
+            <div class="content-wrapper">
+                <h3>📌 Puntos Clave</h3>
+                <ul>
+                    <li><strong>UserBloc</strong> es una implementación del patrón BLoC para manejar el estado del usuario en Flutter.</li>
+                    <li>Separa la <strong>UI</strong> (diseño) de la <strong>Lógica de Negocio</strong> (autenticación, API).</li>
+                    <li>Funciona con un flujo unidireccional: <strong>Evento → BLoC → Estado → UI</strong>.</li>
+                    <li>Ideal para aplicaciones <strong>medianas y grandes</strong> con requisitos de seguridad y roles.</li>
+                </ul>
 
-            <h3>✅ Buenas Prácticas</h3>
-            <ul>
-                <li><strong>Mantén los estados inmutables:</strong> Usa <code>@immutable</code> o <code>equatable</code> para asegurar que los estados no cambien inesperadamente.</li>
-                <li><strong>No coloques lógica de UI en el BLoC:</strong> El BLoC no debe saber nada sobre cómo se muestran los datos.</li>
-                <li><strong>Usa BlocListener para efectos secundarios:</strong> Para mostrar SnackBars, navegaciones, etc.</li>
-                <li><strong>Organiza por features:</strong> Mantén el código relacionado con autenticación en una carpeta específica.</li>
-                <li><strong>Prueba tu BLoC:</strong> Escribe pruebas unitarias para cada evento y estado.</li>
-            </ul>
+                <h3>✅ Buenas Prácticas</h3>
+                <ul>
+                    <li><strong>Mantén los estados inmutables:</strong> Usa <code>@immutable</code> o <code>equatable</code> para asegurar que los estados no cambien inesperadamente.</li>
+                    <li><strong>No coloques lógica de UI en el BLoC:</strong> El BLoC no debe saber nada sobre cómo se muestran los datos.</li>
+                    <li><strong>Usa BlocListener para efectos secundarios:</strong> Para mostrar SnackBars, navegaciones, etc.</li>
+                    <li><strong>Organiza por features:</strong> Mantén el código relacionado con autenticación en una carpeta específica.</li>
+                    <li><strong>Prueba tu BLoC:</strong> Escribe pruebas unitarias para cada evento y estado.</li>
+                </ul>
 
-            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
-                <p style="margin: 0; font-weight: bold; color: #166534;">💡 Consejo Profesional</p>
-                <p style="margin: 0.5rem 0 0 0;">"El patrón BLoC es como el sistema nervioso de tu aplicación Flutter: coordina y comunica todas las partes sin que ellas se conozcan directamente entre sí."</p>
+                <div class="success-box">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <p style="margin: 0; font-weight: bold; color: #166534;">💡 Consejo Profesional</p>
+                        <p style="margin: 0.5rem 0 0 0;">"El patrón BLoC es como el sistema nervioso de tu aplicación Flutter: coordina y comunica todas las partes sin que ellas se conozcan directamente entre sí."</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -414,18 +587,15 @@ class UserBloc extends Bloc&lt;UserEvent, UserState&gt; {
             <p>📚 Guía de Estudio - UserBloc en Flutter</p>
             <p style="font-size: 0.8rem; margin-top: 0.25rem;">Optimizada para dispositivos móviles, tablets y escritorio</p>
             <p style="font-size: 0.8rem; margin-top: 0.25rem;">
-                <span style="display: inline-block; margin: 0 0.5rem;">📱</span>
-                <span style="display: inline-block; margin: 0 0.5rem;">💻</span>
-                <span style="display: inline-block; margin: 0 0.5rem;">🖥️</span>
+                <span style="display: inline-block; margin: 0 0.5rem;"><i class="fas fa-mobile-alt"></i></span>
+                <span style="display: inline-block; margin: 0 0.5rem;"><i class="fas fa-tablet-alt"></i></span>
+                <span style="display: inline-block; margin: 0 0.5rem;"><i class="fas fa-desktop"></i></span>
             </p>
-            <p style="font-size: 0.75rem; margin-top: 0.5rem; color: var(--text-muted);">
-                © 2024 - Todos los derechos reservados
-            </p>
-            <button id="btn-top" aria-label="Volver arriba">⬆</button>
+            <button id="btn-top" aria-label="Volver arriba"><i class="fas fa-arrow-up"></i></button>
         </footer>
     </main>
 
-    <!-- JavaScript Externo -->
+    <!-- JavaScript Externo - ¡RUTA CORRECTA! -->
     <script src="js/main.js"></script>
 </body>
 </html>
