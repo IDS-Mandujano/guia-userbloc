@@ -2,9 +2,8 @@
 // FUNCIONALIDADES PRINCIPALES
 // ========================================
 
+// === BOTÓN VOLVER ARRIBA ===
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // === BOTÓN VOLVER ARRIBA ===
     const btnTop = document.getElementById('btn-top');
     
     window.addEventListener('scroll', function() {
@@ -73,6 +72,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('line-count').textContent = lines;
         });
     }
+    
+    console.log('📚 Guía de Estudio UserBloc cargada correctamente');
+    console.log('💡 Completa el código en el editor y responde el cuestionario para poner a prueba tus conocimientos!');
 });
 
 // ========================================
@@ -408,14 +410,14 @@ function submitQuiz() {
     
     quizSubmitted = true;
     
-// Mostrar resultado
+    // Mostrar resultado
     const resultDiv = document.getElementById('quiz-result');
     const scoreSpan = document.getElementById('score');
     const scoreBarFill = document.getElementById('score-bar-fill');
     const messageDiv = document.getElementById('score-message');
 
     resultDiv.style.display = 'block';
-    scoreSpan.textContent = `${score} de ${total}`;  // ✅ Esto muestra "5 de 10"
+    scoreSpan.textContent = `${score} de ${total}`;
     
     const percentage = (score / total) * 100;
     setTimeout(() => {
@@ -497,7 +499,4 @@ if (isMobile()) {
     document.querySelectorAll('.mockups-container .mobile-phone').forEach(function(phone) {
         phone.style.borderWidth = '5px';
     });
-}
-
-console.log('📚 Guía de Estudio UserBloc cargada correctamente');
-console.log('💡 Completa el código en el editor y responde el cuestionario para poner a prueba tus conocimientos!');
+}c
